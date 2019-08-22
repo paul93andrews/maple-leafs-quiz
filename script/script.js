@@ -8,11 +8,29 @@
 //this new array is what will be summed in order to put together a score in order to categorize the user.
 const leafsApp = {};
     const categoryDetails = {
-        fanatic: {
+        clueless: {
             heading: `You're `,
             span: `Clueless`,
             detail: `Some information`,
             image: `some url`
+        },
+        hater: {
+            heading: `You're `,
+            span: `A Hater`,
+            detail: `Some information`,
+            image: `some url`
+        },
+        realist: {
+            heading: `You're `,
+            span: `A Realist`,
+            detail: `Some information`,
+            image: `some url`
+        },
+        fanatic: {
+            heading: `You're `,
+            span: `A Fanatic`,
+            detail: `Some information`,
+            image: `Some url`
         }
     }
 
@@ -21,18 +39,20 @@ const leafsApp = {};
         $(`h2 span`).text(identity.span);
         $(`.outcomeDetail p`).text(identity.detail);
         $(`.outcomeDetail img`).attr(identity.image);
-
-        const button = $(`<button>`).text(`Reset`);
-        $(`.results`).append(button);
     };
         
 
     const sumTool = (total, currentValue) => total + currentValue;
 
+    const mustAnswer = $(`<p>`).text(`What are you a Sens fan? You must answer before moving on`);
+
+    let rejectClickCounter = 0;
+
+
 
 $(document).ready(function () {
     // console.log(`hello`);
-    $(`form`).on(`submit`,function(event){
+    $(`.submitButton`).on(`click`,function(event){
         event.preventDefault();
 
         const userSelections = [
@@ -42,33 +62,105 @@ $(document).ready(function () {
             $(`input[name=question4]:checked`).val()
         ];
 
+        console.log(userSelections);
+
         // need to convert string values in array into number values, could use a forEach() to change each string value into a number
         const userSelectionNumbers = userSelections.map(function(value) {
             return parseInt(value, 10);
         })
 
         // need to sum the value of the sampleArray
-        const userScore = userSelectionNumbers.reduce(sumTool);
-        console.log(userScore);
-
-        // create if else statements to categorize the user and then assign them the appropriate string to connect with category object
-        let userIdentity = function(score) {
+        const userScore = function(selectionArray){
+            const score = selectionArray.reduce(sumTool);
             if (score <= 3) {
                 return `clueless`;
             }
             else if (score <= 6) {
-                console.log(`You win too!`);
+                return `hater`;
+            }
+            else if (score <= 9) {
+                return `realist`;
             }
             else {
                 return `fanatic`;
             }
         }
+
+        console.log(userScore(userSelectionNumbers));
+        
         // need this variable to pull object properties dedicated to user category information properly. It allows me to pass in a string that will match up with the object's property key and access appropriate content
-        const userIdentityProperty = categoryDetails[userIdentity(userScore)];
+        const userIdentityProperty = categoryDetails[userScore(userSelectionNumbers)];
         
-        // This returns the results page to the DOM
+        // // This returns the results page to the DOM
         userIdentityDetail(userIdentityProperty);
-        
+        // console.log(userIdentityDetail(userIdentityProperty));
+
+        if ($(`input[name=question4]`).is(`:checked`)) {
+            $(`.question4`).removeClass(`show`);
+            $(`.results`).addClass(`show`);
+            const button = $(`<button>`).text(`Reset`).addClass(`reset`);
+            $(`.results`).append(button);
+            rejectClickCounter = 0;
+        }
+        else if (rejectClickCounter <= 0) {
+            $(`.question4`).append(mustAnswer);
+            rejectClickCounter++;
+        }
+    })
+
+    $(`button.begin`).on(`click`, function(event){
+        event.preventDefault();
+        // console.log(`working`);
+        $(`div.welcome.show`).removeClass(`show`);
+        $(`.question1`).addClass(`show`);
+    });
+    
+    $(`button.question1`).on(`click`, function (event) {
+        event.preventDefault();
+        // console.log(`working`);
+        if ($(`input[name=question1]`).is(`:checked`)) {
+            $(`.question1`).removeClass(`show`);
+            $(`.question2`).addClass(`show`);
+            rejectClickCounter = 0;
+        }
+        else if (rejectClickCounter <= 0) {
+            $(`.question1`).append(mustAnswer);
+            rejectClickCounter++;
+        }
+    });
+
+    // I could style it so that the reject message appears as a box to be clicked on to be removed, a stretch goal!
+
+    $(`button.question2`).on(`click`, function () {
+        event.preventDefault();
+        // console.log(`working`);
+        if ($(`input[name=question2]`).is(`:checked`)) {
+            $(`.question2`).removeClass(`show`);
+            $(`.question3`).addClass(`show`);
+            rejectClickCounter = 0;
+        }
+        else if (rejectClickCounter <= 0) {
+            $(`.question2`).append(mustAnswer);
+            rejectClickCounter++;
+        }
+    });
+
+    $(`button.question3`).on(`click`, function () {
+        event.preventDefault();
+        // console.log(`working`);
+        if ($(`input[name=question3]`).is(`:checked`)) {
+            $(`.question3`).removeClass(`show`);
+            $(`.question4`).addClass(`show`);
+            rejectClickCounter = 0;
+        }
+        else if (rejectClickCounter <= 0) {
+            $(`.question3`).append(mustAnswer);
+            rejectClickCounter++;
+        }
+    });
+
+    $(`.results`).on(`click`, `.reset`, function() {
+        location.reload();
     })
 });
 

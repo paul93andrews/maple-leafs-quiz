@@ -2,6 +2,10 @@ html {
     font-size: 120%;
 }
 
+body {
+    min-height: 100vh;
+}
+
 img {
     width: 100%;
     display: block;
@@ -20,3 +24,26 @@ h2 {
     // text-transform: uppercase;
     letter-spacing: .1rem;
 }
+
+div.welcome,
+.question,
+section.results {
+    padding: 5rem;
+    background: blue;
+    display: none;
+}
+
+div.welcome.show {
+    display: block;
+}
+
+.question.show {
+    display: flex;
+}
+
+section.results.show {
+    display: flex;
+}
+
+
+

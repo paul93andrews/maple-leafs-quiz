@@ -9,16 +9,17 @@
 </head>
 <body>
 <main>
-    <div class="welcome">
+    <div class="welcome show">
         <h1>Who do you BeLeaf you are?</h1>
         <div class="detail">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate blanditiis quam vel labore dolor quo at? Deserunt ratione possimus ad hic adipisci, veritatis officia aspernatur, quisquam velit fugiat fuga accusantium tempore, voluptatibus iusto voluptatem optio? Sint debitis sequi fuga non?</p>
             <img src="#" alt="Some Toronto Maple Leaf fan">
+            <button class="begin">Begin!</button>
         </div>
     </div>
     
     <form action="">
-        <fieldset class="question1">
+        <fieldset class="question question1">
             <p>What are you doing if the Leafs are playing the Canadiens on a Saturday night in Montreal?</p>
             <label for="realistOption1">My night revolves around the game</label>
             <input type="radio" name="question1" id="realistOption1" value="2">
@@ -28,8 +29,11 @@
             <input type="radio" name="question1" id="cluelessOption1" value="0">
             <label for="fanaticOption1">At the Bell Centre in Montreal chirping EVERYONE</label>
             <input type="radio" name="question1" id="fanaticOption1" value="3">
+
+            <button class="question1">Next</button>
         </fieldset>	
-        <fieldset class="question2">
+
+        <fieldset class="question question2">
             <p>How do you feel about the city of Boston?</p>
             <label for="fanaticOption2">COWARDS!</label>
             <input type="radio" name="question2" id="fanaticOption2" value="3">
@@ -39,8 +43,11 @@
             <input type="radio" name="question2" id="realistOption2" value="2">
             <label for="haterOption2">Admit it, it's a great sports town</label>
             <input type="radio" name="question2" id="haterOption2" value="1">
+
+            <button class="question2">Next</button>
         </fieldset>
-        <fieldset class="question3">
+
+        <fieldset class="question question3">
             <p>Thoughts on Gretzky's high-stick on Gilmour in '93?</p>
             <label for="realistOption3">Oh jeez, think of what could have been...</label>
             <input type="radio" name="question3" id="realistOption3" value="2">
@@ -50,8 +57,11 @@
             <input type="radio" name="question3" id="cluelessOption3" value="0">
             <label for="haterOption3">Classic failure in Toronto sports</label>
             <input type="radio" name="question3" id="haterOption3" value="1">
+
+            <button class="question3">Next</button>
         </fieldset>
-        <fieldset class="question4">
+
+        <fieldset class="question question4">
             <p>Will the Leafs win the Cup in the next five years?</p>
             <label for="cluelessOption4">Win a cup? They can't buy one?</label>
             <input type="radio" name="question4" id="cluelessOption4" value="0">
@@ -61,10 +71,11 @@
             <input type="radio" name="question4" id="realistOption4" value="2">
             <label for="fanaticOption4">I've been praying for years and JOHNNY T says YES!</label>
             <input type="radio" name="question4" id="fanaticOption4" value="3">
+
+            <input class="submitButton" type="submit" value="Find out!">
         </fieldset>
 
         
-        <input type="submit" value="Find out!">
         
     </form>
     
