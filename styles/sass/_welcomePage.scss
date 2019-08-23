@@ -1,0 +1,20 @@
+div.welcome {
+    padding: 1rem .5rem;
+    p {
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    p:nth-of-type(1) {
+        margin-top: 0;
+    }
+    p:nth-of-type(2) {
+        margin-bottom: 1.5rem;
+    }
+    svg {
+        width: 30%;
+        margin-top: .5rem;
+        fill: $primaryDark;
+    }
+}
+

@@ -167,18 +167,11 @@ $(document).ready(function () {
 
 
 
-
-
-// the main section of the page is a div that contains the instructions and outcome of the quiz
-// this section will contain a button that when CLICKED will dynamically change the div to reveal the form with the questions and options
-// this question div will have a button that when CLICKED does three things 
-// 1) collect the corresponding values for their choices into a new Array. 
-// 2) sum that array and correspond that sum to an outcome using if statements. 
-// 3) dynamically change the div to a new div that displays their outcome 
-
-// On that final outcome div page, there will be another button that when CLICKED will reset everything and bring the quiz to the beginning
-
+// still to do:
+//style the shit out of this thing, ensuring accessibility throughout
+//properly organize all of the code and run an init function
 
 // stretch goals:
-// Give each question and its options its own dedicated div in the main section
-//Include an option to share their results to 
+//refactor the .click functions so that there is one function that takes inputs depending on where on the page the user is and will dynamically change divs 
+// see if the dynamic appearance of divs can be transitioned
+//Include an option to share their results to twitter
