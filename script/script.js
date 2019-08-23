@@ -7,47 +7,44 @@
 //declare a new function that will take that array and for loop through it, matching value properties in the object so that it will push the score properties into a new array.
 //this new array is what will be summed in order to put together a score in order to categorize the user.
 const leafsApp = {};
-    const categoryDetails = {
-        clueless: {
-            heading: `You're `,
-            span: `Clueless`,
-            detail: `Some information`,
-            image: `some url`
-        },
-        hater: {
-            heading: `You're `,
-            span: `A Hater`,
-            detail: `Some information`,
-            image: `some url`
-        },
-        realist: {
-            heading: `You're `,
-            span: `A Realist`,
-            detail: `Some information`,
-            image: `some url`
-        },
-        fanatic: {
-            heading: `You're `,
-            span: `A Fanatic`,
-            detail: `Some information`,
-            image: `Some url`
-        }
+leafsApp.categoryDetails = {
+    clueless: {
+        heading: `You're `,
+        span: `Clueless`,
+        detail: `Some information`,
+        image: `some url`
+    },
+    hater: {
+        heading: `You're `,
+        span: `A Hater`,
+        detail: `Some information`,
+        image: `some url`
+    },
+    realist: {
+        heading: `You're `,
+        span: `A Realist`,
+        detail: `Some information`,
+        image: `some url`
+    },
+    fanatic: {
+        heading: `You're `,
+        span: `A Fanatic`,
+        detail: `Some information`,
+        image: `Some url`
     }
+}
 
-    const userIdentityDetail = function(identity){
-        $(`.results h2`).text(identity.heading);
-        $(`h2 span`).text(identity.span);
-        $(`.outcomeDetail p`).text(identity.detail);
-        $(`.outcomeDetail img`).attr(identity.image);
-    };
+leafsApp.userCategoryDetail = function(identity){
+    $(`span.category`).text(identity.span);
+    $(`.results h2`).text(identity.heading);
+    $(`.outcomeDetail p`).text(identity.detail);
+    $(`.outcomeDetail img`).attr(identity.image);
+};
         
 
-    const sumTool = (total, currentValue) => total + currentValue;
-
-    const mustAnswer = $(`<p>`).text(`What are you a Sens fan? You must answer before moving on`);
+    const mustAnswer = `What are you a Sens fan? You must answer before moving on`;
 
     let rejectClickCounter = 0;
-
 
 
 $(document).ready(function () {
@@ -71,6 +68,7 @@ $(document).ready(function () {
 
         // need to sum the value of the sampleArray
         const userScore = function(selectionArray){
+            const sumTool = (total, currentValue) => total + currentValue;
             const score = selectionArray.reduce(sumTool);
             if (score <= 3) {
                 return `clueless`;
@@ -89,12 +87,12 @@ $(document).ready(function () {
         console.log(userScore(userSelectionNumbers));
         
         // need this variable to pull object properties dedicated to user category information properly. It allows me to pass in a string that will match up with the object's property key and access appropriate content
-        const userIdentityProperty = categoryDetails[userScore(userSelectionNumbers)];
+        const userIdentityProperty = leafsApp.categoryDetails[userScore(userSelectionNumbers)];
         
         // // This returns the results page to the DOM
-        userIdentityDetail(userIdentityProperty);
+        leafsApp.userCategoryDetail(userIdentityProperty);
         // console.log(userIdentityDetail(userIdentityProperty));
-
+        
         if ($(`input[name=question4]`).is(`:checked`)) {
             $(`.question4`).removeClass(`show`);
             $(`.results`).addClass(`show`);
@@ -103,10 +101,10 @@ $(document).ready(function () {
             rejectClickCounter = 0;
         }
         else if (rejectClickCounter <= 0) {
-            $(`.question4`).append(mustAnswer);
+            $(`.question4 p.warning`).append(mustAnswer);
             rejectClickCounter++;
         }
-    })
+    });
 
     $(`button.begin`).on(`click`, function(event){
         event.preventDefault();
@@ -124,7 +122,7 @@ $(document).ready(function () {
             rejectClickCounter = 0;
         }
         else if (rejectClickCounter <= 0) {
-            $(`.question1`).append(mustAnswer);
+            $(`.question1 p.warning`).text(mustAnswer);
             rejectClickCounter++;
         }
     });
@@ -140,7 +138,7 @@ $(document).ready(function () {
             rejectClickCounter = 0;
         }
         else if (rejectClickCounter <= 0) {
-            $(`.question2`).append(mustAnswer);
+            $(`.question2 p.warning`).text(mustAnswer);
             rejectClickCounter++;
         }
     });
@@ -154,7 +152,7 @@ $(document).ready(function () {
             rejectClickCounter = 0;
         }
         else if (rejectClickCounter <= 0) {
-            $(`.question3`).append(mustAnswer);
+            $(`.question3 p.warning`).text(mustAnswer);
             rejectClickCounter++;
         }
     });
