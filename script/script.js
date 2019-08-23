@@ -92,7 +92,7 @@ $(document).ready(function () {
         // // This returns the results page to the DOM
         leafsApp.userCategoryDetail(userIdentityProperty);
         // console.log(userIdentityDetail(userIdentityProperty));
-        
+
         if ($(`input[name=question4]`).is(`:checked`)) {
             $(`.question4`).removeClass(`show`);
             $(`.results`).addClass(`show`);
@@ -106,6 +106,44 @@ $(document).ready(function () {
         }
     });
 
+    const clickActions = function(button, currentInput, currentQuestionCard, nextQuestionCard, currentQuestionParagraph) {
+        $(button).on(`click`, function(event) {
+            event.preventDefault();
+            console.log(`works`);
+            if ($(currentInput).is(`:checked`)) {
+                $(currentQuestionCard).removeClass(`show`);
+                $(nextQuestionCard).addClass(`show`);
+                rejectClickCounter = 0;
+            }
+            else if (rejectClickCounter <= 0) {
+                $(currentQuestionParagraph).text(mustAnswer);
+                rejectClickCounter++;
+            }
+        });
+    }
+
+    const buttonBegin = $(`button.begin`);
+    const buttonQuestion1 = $(`button.question1`);
+    const buttonQuestion2 = $(`button.question2`);
+    const buttonQuestion3 = $(`button.question3`);
+    const welcomeCard = $(`div.welcome.show`);
+    const firstQuestionCard = $(`.question1`);
+    const secondQuestionCard = $(`.question2`);
+    const thirdQuestionCard = $(`.question3`);
+    const fourthQuestionCard = $(`.question4`);
+    const firstCardInput = $(`input[name=question1]`);
+    const secondCardInput = $(`input[name=question2]`);
+    const thirdCardInput = $(`input[name=question3]`);
+    const firstCardParagraph = $(`.question1 p.warning`);
+    const secondCardParagraph = $(`.question2 p.warning`);
+    const thirdCardParagraph = $(`.question3 p.warning`);
+
+    clickActions(buttonQuestion1, firstCardInput, firstQuestionCard, secondQuestionCard, firstCardParagraph);
+    clickActions(buttonQuestion2, secondCardInput, secondQuestionCard, thirdQuestionCard, secondCardParagraph);
+    clickActions(buttonQuestion3, thirdCardInput, thirdQuestionCard, fourthQuestionCard, thirdCardParagraph);
+
+
+
     $(`button.begin`).on(`click`, function(event){
         event.preventDefault();
         // console.log(`working`);
@@ -113,54 +151,60 @@ $(document).ready(function () {
         $(`.question1`).addClass(`show`);
     });
     
-    $(`button.question1`).on(`click`, function (event) {
-        event.preventDefault();
+    // $(`button.question1`).on(`click`, function (event) {
+    //     event.preventDefault();
+    // });
         // console.log(`working`);
-        if ($(`input[name=question1]`).is(`:checked`)) {
-            $(`.question1`).removeClass(`show`);
-            $(`.question2`).addClass(`show`);
-            rejectClickCounter = 0;
-        }
-        else if (rejectClickCounter <= 0) {
-            $(`.question1 p.warning`).text(mustAnswer);
-            rejectClickCounter++;
-        }
-    });
+    //     if ($(`input[name=question1]`).is(`:checked`)) {
+    //         $(`.question1`).removeClass(`show`);
+    //         $(`.question2`).addClass(`show`);
+    //         rejectClickCounter = 0;
+    //     }
+    //     else if (rejectClickCounter <= 0) {
+    //         $(`.question1 p.warning`).text(mustAnswer);
+    //         rejectClickCounter++;
+    //     }
+    // });
 
-    // I could style it so that the reject message appears as a box to be clicked on to be removed, a stretch goal!
+    // // I could style it so that the reject message appears as a box to be clicked on to be removed, a stretch goal!
 
-    $(`button.question2`).on(`click`, function () {
-        event.preventDefault();
-        // console.log(`working`);
-        if ($(`input[name=question2]`).is(`:checked`)) {
-            $(`.question2`).removeClass(`show`);
-            $(`.question3`).addClass(`show`);
-            rejectClickCounter = 0;
-        }
-        else if (rejectClickCounter <= 0) {
-            $(`.question2 p.warning`).text(mustAnswer);
-            rejectClickCounter++;
-        }
-    });
-
-    $(`button.question3`).on(`click`, function () {
-        event.preventDefault();
-        // console.log(`working`);
-        if ($(`input[name=question3]`).is(`:checked`)) {
-            $(`.question3`).removeClass(`show`);
-            $(`.question4`).addClass(`show`);
-            rejectClickCounter = 0;
-        }
-        else if (rejectClickCounter <= 0) {
-            $(`.question3 p.warning`).text(mustAnswer);
-            rejectClickCounter++;
-        }
-    });
-
-    $(`.results`).on(`click`, `.reset`, function() {
+    // $(`button.question2`).on(`click`, function () {
+    //     event.preventDefault();
+    //     // console.log(`working`);
+    //     if ($(`input[name=question2]`).is(`:checked`)) {
+    //         $(`.question2`).removeClass(`show`);
+    //         $(`.question3`).addClass(`show`);
+    //         rejectClickCounter = 0;
+    //     }
+    //     else if (rejectClickCounter <= 0) {
+    //         $(`.question2 p.warning`).text(mustAnswer);
+    //         rejectClickCounter++;
+    //     }
+    const resultsReload = function() {
+        $(`.results`).on(`click`, `.reset`, function() {
         location.reload();
-    })
-});
+        }
+    )}
+
+    resultsReload();
+
+    });
+
+    // $(`button.question3`).on(`click`, function () {
+    //     event.preventDefault();
+    //     // console.log(`working`);
+    //     if ($(`input[name=question3]`).is(`:checked`)) {
+    //         $(`.question3`).removeClass(`show`);
+    //         $(`.question4`).addClass(`show`);
+    //         rejectClickCounter = 0;
+    //     }
+    //     else if (rejectClickCounter <= 0) {
+    //         $(`.question3 p.warning`).text(mustAnswer);
+    //         rejectClickCounter++;
+    //     }
+    // });
+
+// });
 
 
 
