@@ -226,11 +226,22 @@ h2 {
 h1,
 h2 {
   font-family: 'Maven Pro', sans-serif;
+  text-transform: uppercase;
+}
+
+h1,
+h2,
+.question p {
+  color: #022787;
 }
 
 p {
   margin: .25rem 0;
   font-size: .85rem;
+}
+
+span {
+  font-weight: bold;
 }
 
 div.welcome,
@@ -241,19 +252,15 @@ section.results {
   text-align: center;
   padding: 1rem 0;
   background: mintcream;
-  display: none;
+  max-width: 24rem;
+  margin: 0 auto;
 }
 
 div.welcome.show {
   display: block;
 }
 
-.question.show {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
+.question.show,
 section.results.show {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -270,6 +277,15 @@ input {
   border: none;
   border-radius: .25rem;
   padding: .5rem .75rem;
+}
+
+form button,
+form input[type=submit],
+.results button {
+  width: 11rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
 
 input.submitButton:hover,
@@ -334,6 +350,14 @@ fieldset {
   text-align: center;
 }
 
+.question p.warning {
+  display: none;
+}
+
+.question p.warning.show {
+  display: block;
+}
+
 .question label {
   font-size: .85rem;
 }
@@ -375,4 +399,24 @@ div.customCheckContainer input[type=radio]:focus + label::after {
 
 div.customCheckContainer input[type=radio]:checked + label::after {
   background: silver;
+}
+
+@media only screen and (min-width: 400px) {
+  .question1 {
+    padding: .75rem;
+  }
+}
+
+section.results {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 1.1rem;
+}
+
+section.results img {
+  margin-top: 1rem;
+  border: 0.2rem #022787 solid;
+  border-radius: .5rem;
 }

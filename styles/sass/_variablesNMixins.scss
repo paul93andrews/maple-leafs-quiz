@@ -20,6 +20,8 @@ $primaryDark: #022787;
     text-align: center;
     padding: 1rem 0;
     background: $primaryLight;
+    max-width: 24rem;
+    margin: 0 auto;
 }
 
 @mixin selectorState {
@@ -29,4 +31,10 @@ $primaryDark: #022787;
 @mixin clickButtonState {
     position: relative;
     top: .25rem;
+}
+
+@mixin media($width) {
+    @media only screen and (min-width: $width) {
+        @content;
+    }
 }

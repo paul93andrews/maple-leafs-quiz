@@ -1,0 +1,9 @@
+section.results {
+    flex-direction: column;
+    padding: 1.1rem;
+    img {
+        margin-top: 1rem;
+        border: .2rem $primaryDark solid;
+        border-radius: .5rem;
+    }
+}

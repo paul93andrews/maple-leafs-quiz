@@ -9,46 +9,81 @@
 const leafsApp = {};
 leafsApp.categoryDetails = {
     clueless: {
-        heading: `You're `,
-        span: `Clueless`,
-        detail: `Some information`,
-        image: `some url`
+        heading: `You're <span class="category">Clueless</span>`,
+        detail: `You did realize this was a quiz about what kind of fan you are, right? Not what kind of fan you own and use on a humid evening when your A/C is down. My advice to you is simple. Get out once in a while and watch a Leafs game. It will surely disappoint you.`,
+        image: `styles/imagesAndIcons/cluelessImage.jpg`
     },
     hater: {
-        heading: `You're `,
-        span: `A Hater`,
-        detail: `Some information`,
-        image: `some url`
+        heading: `You're <span class="category">A Hater</span>`,
+        detail: `Someone pass this person a "Hater"ade with a side of salt. I bet you love watching the Leafs golf in May as you hit 30 over par. Also, you're probably a Canadiens fan. Well, remember that Montreal is better than Toronto in one respect: shawarma not hockey.`,
+        image: `styles/imagesAndIcons/leafsHater.jpg`
     },
     realist: {
-        heading: `You're `,
-        span: `A Realist`,
-        detail: `Some information`,
-        image: `some url`
+        heading: `You're <span class="category">A Realist</span>`,
+        detail: `You've seen it all: the ups, the downs, the comebacks, and the colossal chokes. And you've learned. You know better than to take a 4-1 lead in the third period for granted. At least you can enjoy the ride of a playoff run with the very real certainty of it crashing and burning.`,
+        image: `styles/imagesAndIcons/leafsRealist.jpg`
     },
     fanatic: {
-        heading: `You're `,
-        span: `A Fanatic`,
-        detail: `Some information`,
-        image: `Some url`
+        heading: `You're <span class="category">A Fanatic</span>`,
+        detail: `Woah you really like to scream! And paint your face. And initiate violent conflict with fans of opposing teams. But you're passionate. And if passion means a one night stay at the drunk tank, then let's appoint you the Parade's grand marshal now.`,
+        image: `styles/imagesAndIcons/leafsFanatic.jpg`
     }
 }
 
 leafsApp.userCategoryDetail = function(identity){
+    $(`h2`).html(identity.heading);
     $(`span.category`).text(identity.span);
-    $(`.results h2`).text(identity.heading);
     $(`.outcomeDetail p`).text(identity.detail);
-    $(`.outcomeDetail img`).attr(identity.image);
+    $(`.outcomeDetail img`).attr(`src`, identity.image);
 };
         
 
-    const mustAnswer = `What are you a Sens fan? You must answer before moving on`;
+leafsApp.mustAnswer = `What are you a Sens fan? You must answer before moving on`;
 
-    let rejectClickCounter = 0;
+leafsApp.rejectClickCounter = 0;
 
+leafsApp.beginQuizAction = () => {
+    $(`button.begin`).on(`click`, function (event) {
+        event.preventDefault();
+        // console.log(`working`);
+        $(`div.welcome.show`).removeClass(`show`);
+        $(`.question1`).addClass(`show`);
+    })
+};
 
-$(document).ready(function () {
-    // console.log(`hello`);
+leafsApp.buttonBegin = $(`button.begin`);
+leafsApp.buttonQuestion1 = $(`button.question1`);
+leafsApp.buttonQuestion2 = $(`button.question2`);
+leafsApp.buttonQuestion3 = $(`button.question3`);
+leafsApp.welcomeCard = $(`div.welcome.show`);
+leafsApp.firstQuestionCard = $(`.question1`);
+leafsApp.secondQuestionCard = $(`.question2`);
+leafsApp.thirdQuestionCard = $(`.question3`);
+leafsApp.fourthQuestionCard = $(`.question4`);
+leafsApp.firstCardInput = $(`input[name=question1]`);
+leafsApp.secondCardInput = $(`input[name=question2]`);
+leafsApp.thirdCardInput = $(`input[name=question3]`);
+leafsApp.firstCardParagraph = $(`.question1 p.warning`);
+leafsApp.secondCardParagraph = $(`.question2 p.warning`);
+leafsApp.thirdCardParagraph = $(`.question3 p.warning`);
+
+leafsApp.clickActions = function (button, currentInput, currentQuestionCard, nextQuestionCard, currentQuestionParagraph) {
+    $(button).on(`click`, function (event) {
+        event.preventDefault();
+        console.log(`works`);
+        if ($(currentInput).is(`:checked`)) {
+            $(currentQuestionCard).removeClass(`show`);
+            $(nextQuestionCard).addClass(`show`);
+            leafsApp.rejectClickCounter = 0;
+        }
+        else if (leafsApp.rejectClickCounter <= 0) {
+            $(currentQuestionParagraph).addClass(`show`).text(leafsApp.mustAnswer);
+            leafsApp.rejectClickCounter++;
+        }
+    });
+}
+
+leafsApp.submitButtonAction = function() {
     $(`.submitButton`).on(`click`,function(event){
         event.preventDefault();
 
@@ -98,122 +133,41 @@ $(document).ready(function () {
             $(`.results`).addClass(`show`);
             const button = $(`<button>`).text(`Reset`).addClass(`reset`);
             $(`.results`).append(button);
-            rejectClickCounter = 0;
+            leafsApp.rejectClickCounter = 0;
         }
-        else if (rejectClickCounter <= 0) {
-            $(`.question4 p.warning`).append(mustAnswer);
-            rejectClickCounter++;
+        else if (leafsApp.rejectClickCounter <= 0) {
+            $(`.question4 p.warning`).addClass(`show`).append(leafsApp.mustAnswer);
+            leafsApp.rejectClickCounter++;
         }
     });
+}
 
-    const clickActions = function(button, currentInput, currentQuestionCard, nextQuestionCard, currentQuestionParagraph) {
-        $(button).on(`click`, function(event) {
-            event.preventDefault();
-            console.log(`works`);
-            if ($(currentInput).is(`:checked`)) {
-                $(currentQuestionCard).removeClass(`show`);
-                $(nextQuestionCard).addClass(`show`);
-                rejectClickCounter = 0;
-            }
-            else if (rejectClickCounter <= 0) {
-                $(currentQuestionParagraph).text(mustAnswer);
-                rejectClickCounter++;
-            }
-        });
-    }
-
-    const buttonBegin = $(`button.begin`);
-    const buttonQuestion1 = $(`button.question1`);
-    const buttonQuestion2 = $(`button.question2`);
-    const buttonQuestion3 = $(`button.question3`);
-    const welcomeCard = $(`div.welcome.show`);
-    const firstQuestionCard = $(`.question1`);
-    const secondQuestionCard = $(`.question2`);
-    const thirdQuestionCard = $(`.question3`);
-    const fourthQuestionCard = $(`.question4`);
-    const firstCardInput = $(`input[name=question1]`);
-    const secondCardInput = $(`input[name=question2]`);
-    const thirdCardInput = $(`input[name=question3]`);
-    const firstCardParagraph = $(`.question1 p.warning`);
-    const secondCardParagraph = $(`.question2 p.warning`);
-    const thirdCardParagraph = $(`.question3 p.warning`);
-
-    clickActions(buttonQuestion1, firstCardInput, firstQuestionCard, secondQuestionCard, firstCardParagraph);
-    clickActions(buttonQuestion2, secondCardInput, secondQuestionCard, thirdQuestionCard, secondCardParagraph);
-    clickActions(buttonQuestion3, thirdCardInput, thirdQuestionCard, fourthQuestionCard, thirdCardParagraph);
-
-
-
-    $(`button.begin`).on(`click`, function(event){
-        event.preventDefault();
-        // console.log(`working`);
-        $(`div.welcome.show`).removeClass(`show`);
-        $(`.question1`).addClass(`show`);
-    });
-    
-    // $(`button.question1`).on(`click`, function (event) {
-    //     event.preventDefault();
-    // });
-        // console.log(`working`);
-    //     if ($(`input[name=question1]`).is(`:checked`)) {
-    //         $(`.question1`).removeClass(`show`);
-    //         $(`.question2`).addClass(`show`);
-    //         rejectClickCounter = 0;
-    //     }
-    //     else if (rejectClickCounter <= 0) {
-    //         $(`.question1 p.warning`).text(mustAnswer);
-    //         rejectClickCounter++;
-    //     }
-    // });
-
-    // // I could style it so that the reject message appears as a box to be clicked on to be removed, a stretch goal!
-
-    // $(`button.question2`).on(`click`, function () {
-    //     event.preventDefault();
-    //     // console.log(`working`);
-    //     if ($(`input[name=question2]`).is(`:checked`)) {
-    //         $(`.question2`).removeClass(`show`);
-    //         $(`.question3`).addClass(`show`);
-    //         rejectClickCounter = 0;
-    //     }
-    //     else if (rejectClickCounter <= 0) {
-    //         $(`.question2 p.warning`).text(mustAnswer);
-    //         rejectClickCounter++;
-    //     }
-    const resultsReload = function() {
-        $(`.results`).on(`click`, `.reset`, function() {
+leafsApp.resultsReloadAction = function () {
+    $(`.results`).on(`click`, `.reset`, function () {
         location.reload();
-        }
-    )}
-
-    resultsReload();
-
     });
+}
 
-    // $(`button.question3`).on(`click`, function () {
-    //     event.preventDefault();
-    //     // console.log(`working`);
-    //     if ($(`input[name=question3]`).is(`:checked`)) {
-    //         $(`.question3`).removeClass(`show`);
-    //         $(`.question4`).addClass(`show`);
-    //         rejectClickCounter = 0;
-    //     }
-    //     else if (rejectClickCounter <= 0) {
-    //         $(`.question3 p.warning`).text(mustAnswer);
-    //         rejectClickCounter++;
-    //     }
-    // });
-
-// });
+leafsApp.init = () => {
+    leafsApp.beginQuizAction();
+    leafsApp.submitButtonAction();
+    leafsApp.clickActions(leafsApp.buttonQuestion1, leafsApp.firstCardInput, leafsApp.firstQuestionCard, leafsApp.secondQuestionCard, leafsApp.firstCardParagraph);
+    leafsApp.clickActions(leafsApp.buttonQuestion2, leafsApp.secondCardInput, leafsApp.secondQuestionCard, leafsApp.thirdQuestionCard, leafsApp.secondCardParagraph);
+    leafsApp.clickActions(leafsApp.buttonQuestion3, leafsApp.thirdCardInput, leafsApp.thirdQuestionCard, leafsApp.fourthQuestionCard, leafsApp.thirdCardParagraph);
+    leafsApp.resultsReloadAction();
+}
 
 
-
+$(document).ready(function () {
+    leafsApp.init();
+});
 
 // still to do:
 //style the shit out of this thing, ensuring accessibility throughout
-//properly organize all of the code and run an init function
+    // ensure the warning paragraph is correctly positioned
+    // change font sizes as screen scales up
+    // check alignment of radio labels and the label button as screen scales up
 
 // stretch goals:
-//refactor the .click functions so that there is one function that takes inputs depending on where on the page the user is and will dynamically change divs 
 // see if the dynamic appearance of divs can be transitioned
-//Include an option to share their results to twitter
+//Include an option to share their results to twitter, make it an anchor tag that looks like a round button, and for accessibility include alt-text that explains what it is and a hover state that explains that it shares to twitter
