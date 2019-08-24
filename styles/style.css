@@ -210,14 +210,12 @@ img {
 }
 
 h1 {
-  font-size: 1.5rem;
   line-height: 2rem;
   font-weight: normal;
   margin: 0;
 }
 
 h2 {
-  font-size: 1.5rem;
   line-height: 2.3rem;
   letter-spacing: .1rem;
   margin: 0;
@@ -227,6 +225,7 @@ h1,
 h2 {
   font-family: 'Maven Pro', sans-serif;
   text-transform: uppercase;
+  font-size: 1.5rem;
 }
 
 h1,
@@ -254,6 +253,7 @@ section.results {
   background: mintcream;
   max-width: 24rem;
   margin: 0 auto;
+  display: none;
 }
 
 div.welcome.show {
@@ -302,6 +302,12 @@ button:active {
   top: .25rem;
 }
 
+@media only screen and (min-width: 600px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
 div.welcome {
   padding: 1rem .5rem;
 }
@@ -324,6 +330,12 @@ div.welcome svg {
   width: 30%;
   margin-top: .5rem;
   fill: #022787;
+}
+
+@media only screen and (min-width: 600px) {
+  div.welcome p {
+    font-size: 1.25rem;
+  }
 }
 
 fieldset {
@@ -352,6 +364,10 @@ fieldset {
 
 .question p.warning {
   display: none;
+  font-weight: bold;
+  font-style: normal;
+  font-family: 'Cabin Condensed', sans-serif;
+  letter-spacing: .1rem;
 }
 
 .question p.warning.show {
@@ -407,6 +423,15 @@ div.customCheckContainer input[type=radio]:checked + label::after {
   }
 }
 
+@media only screen and (min-width: 600px) {
+  .question p {
+    font-size: 1.25rem;
+  }
+  label {
+    font-size: 1.25rem;
+  }
+}
+
 section.results {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -419,4 +444,51 @@ section.results img {
   margin-top: 1rem;
   border: 0.2rem #022787 solid;
   border-radius: .5rem;
+}
+
+section.results span {
+  font-style: italic;
+}
+
+section.results a {
+  background: #022787;
+  border: .25rem solid transparent;
+  padding: .75rem 1.25rem .5rem;
+  font-size: 2rem;
+  border-radius: 50rem;
+  width: 5rem;
+  height: 4.5rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin-bottom: .5rem;
+  margin-top: .25rem;
+  -webkit-transition: background ease-in .2s;
+  transition: background ease-in .2s;
+}
+
+section.results a i {
+  color: mintcream;
+}
+
+section.results a:hover,
+section.results a:focus {
+  background: mintcream;
+  border: 0.25rem solid #022787;
+  -webkit-box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.75);
+}
+
+section.results a:hover i,
+section.results a:focus i {
+  color: #022787;
+}
+
+@media only screen and (min-width: 600px) {
+  section.results {
+    padding: .9rem 1.1rem;
+  }
+  section.results p {
+    margin: .5rem 0;
+  }
 }

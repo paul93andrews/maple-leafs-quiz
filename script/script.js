@@ -10,23 +10,27 @@ const leafsApp = {};
 leafsApp.categoryDetails = {
     clueless: {
         heading: `You're <span class="category">Clueless</span>`,
-        detail: `You did realize this was a quiz about what kind of fan you are, right? Not what kind of fan you own and use on a humid evening when your A/C is down. My advice to you is simple. Get out once in a while and watch a Leafs game. It will surely disappoint you.`,
-        image: `styles/imagesAndIcons/cluelessImage.jpg`
+        detail: `You did realize this was a quiz about what kind of Leafs fan you are, right? Not what kind of fan you own and use on a humid evening when your A/C is down. My advice to you is simple. Get out once in a while and watch a Leafs game. It will surely disappoint you.`,
+        image: `styles/imagesAndIcons/cluelessImage.jpg`,
+        twitter: `Clueless`
     },
     hater: {
         heading: `You're <span class="category">A Hater</span>`,
         detail: `Someone pass this person a "Hater"ade with a side of salt. I bet you love watching the Leafs golf in May as you hit 30 over par. Also, you're probably a Canadiens fan. Well, remember that Montreal is better than Toronto in one respect: shawarma not hockey.`,
-        image: `styles/imagesAndIcons/leafsHater.jpg`
+        image: `styles/imagesAndIcons/leafsHater.jpg`,
+        twitter: `Hater`
     },
     realist: {
         heading: `You're <span class="category">A Realist</span>`,
-        detail: `You've seen it all: the ups, the downs, the comebacks, and the colossal chokes. And you've learned. You know better than to take a 4-1 lead in the third period for granted. At least you can enjoy the ride of a playoff run with the very real certainty of it crashing and burning.`,
-        image: `styles/imagesAndIcons/leafsRealist.jpg`
+        detail: `You've seen it all: the ups, the downs, the comebacks, and the colossal chokes. And you've learned. You know better than to take a 4-1 lead in the third period for granted. At least you can still enjoy a playoff run despite the very real certainty of it crashing and burning.`,
+        image: `styles/imagesAndIcons/leafsRealist.jpg`,
+        twitter: `Realist`
     },
     fanatic: {
         heading: `You're <span class="category">A Fanatic</span>`,
         detail: `Woah you really like to scream! And paint your face. And initiate violent conflict with fans of opposing teams. But you're passionate. And if passion means a one night stay at the drunk tank, then let's appoint you the Parade's grand marshal now.`,
-        image: `styles/imagesAndIcons/leafsFanatic.jpg`
+        image: `styles/imagesAndIcons/leafsFanatic.jpg`,
+        twitter: `Fanatic`
     }
 }
 
@@ -128,11 +132,14 @@ leafsApp.submitButtonAction = function() {
         leafsApp.userCategoryDetail(userIdentityProperty);
         // console.log(userIdentityDetail(userIdentityProperty));
 
+        const shareTwitterURL = `https://twitter.com/intent/tweet?url=https:%2f%2fpaul93andrews.github.io%2f&text=I%27m%20the%20${userIdentityProperty.twitter}%20Toronto%20Maple%20Leafs%20fan%20-%20Who%20are%20you?%20via%20@paulandrewsdev&related=paulandrewsdev`;
+
         if ($(`input[name=question4]`).is(`:checked`)) {
             $(`.question4`).removeClass(`show`);
             $(`.results`).addClass(`show`);
             const button = $(`<button>`).text(`Reset`).addClass(`reset`);
             $(`.results`).append(button);
+            $(`a`).attr(`href`, shareTwitterURL);
             leafsApp.rejectClickCounter = 0;
         }
         else if (leafsApp.rejectClickCounter <= 0) {
@@ -145,8 +152,7 @@ leafsApp.submitButtonAction = function() {
 leafsApp.resultsReloadAction = function () {
     $(`.results`).on(`click`, `.reset`, function () {
         location.reload();
-    });
-}
+    })};
 
 leafsApp.init = () => {
     leafsApp.beginQuizAction();
@@ -162,12 +168,5 @@ $(document).ready(function () {
     leafsApp.init();
 });
 
-// still to do:
-//style the shit out of this thing, ensuring accessibility throughout
-    // ensure the warning paragraph is correctly positioned
-    // change font sizes as screen scales up
-    // check alignment of radio labels and the label button as screen scales up
-
 // stretch goals:
 // see if the dynamic appearance of divs can be transitioned
-//Include an option to share their results to twitter, make it an anchor tag that looks like a round button, and for accessibility include alt-text that explains what it is and a hover state that explains that it shares to twitter

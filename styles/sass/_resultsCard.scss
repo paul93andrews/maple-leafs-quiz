@@ -6,4 +6,42 @@ section.results {
         border: .2rem $primaryDark solid;
         border-radius: .5rem;
     }
+    span {
+        font-style: italic;
+    }
+    a {
+        background: $primaryDark;
+        border: .25rem solid transparent;
+        padding: .75rem 1.25rem .5rem;
+        font-size: 2rem;
+        border-radius: 50rem;
+        width: 5rem;
+        height: 4.5rem;
+        align-self: center;
+        margin-bottom: .5rem;
+        margin-top: .25rem;
+        transition: background ease-in .2s;
+        i {
+            color: $primaryLight;
+        }
+    }
+    a:hover,
+    a:focus {
+        background: $primaryLight;
+        border: .25rem solid $primaryDark;
+        @include selectorState;
+    }
+    a:hover i,
+    a:focus i {
+        color: $primaryDark;
+    }
+}
+
+@include media(600px) {
+    section.results {
+        padding: .9rem 1.1rem;
+        p {
+            margin: .5rem 0;
+        }
+    }
 }

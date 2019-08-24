@@ -11,6 +11,10 @@
     }
     p.warning {
         display: none;
+        font-weight: bold;
+        font-style: normal;
+        font-family: 'Cabin Condensed', sans-serif;
+        letter-spacing: .1rem;
     }
     p.warning.show {
         display: block;
@@ -58,5 +62,15 @@ div.customCheckContainer {
 @include media(400px) {
     .question1 {
         padding: .75rem;
+    }
+}
+
+@include media(600px) {
+    .question p {
+        font-size: 1.25rem;
+    }
+
+    label {
+        font-size: 1.25rem;
     }
 }
