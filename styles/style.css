@@ -352,6 +352,9 @@ div.welcome svg {
   padding: 1rem;
   position: relative;
   text-align: left;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .question p {
