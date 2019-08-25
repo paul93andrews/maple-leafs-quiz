@@ -1,11 +1,3 @@
-// declare separate arrays for each of the four questions
-// inside each object, declare properties that are objects with properties within them
-// the properties inside of the objects will be a string and a Number, the string representing which option they can choose and the number representing a corresponding value for their choice
-
-//declare one object that has the question value scores
-//declare a function that takes the user choice values and puts them into an array. (can I do this?)
-//declare a new function that will take that array and for loop through it, matching value properties in the object so that it will push the score properties into a new array.
-//this new array is what will be summed in order to put together a score in order to categorize the user.
 const leafsApp = {};
 leafsApp.categoryDetails = {
     clueless: {
@@ -16,7 +8,7 @@ leafsApp.categoryDetails = {
     },
     hater: {
         heading: `You're <span class="category">A Hater</span>`,
-        detail: `Someone pass this person a "Hater"ade with a side of salt. I bet you love watching the Leafs golf in May as you hit 30 over par. Also, you're probably a Canadiens fan. Well, remember that Montreal is better than Toronto in one respect: shawarma not hockey.`,
+        detail: `Someone pass this person a "Hater"ade with a side of salt. I bet you love watching the Leafs golf in May as you hit 30 over par. Also, you're probably a Canadiens fan. Well, remember that Montreal is better than Toronto in one respect: shawarma, not hockey.`,
         image: `styles/imagesAndIcons/leafsHater.jpg`,
         twitter: `Hater`
     },
@@ -40,20 +32,6 @@ leafsApp.userCategoryDetail = function(identity){
     $(`.outcomeDetail p`).text(identity.detail);
     $(`.outcomeDetail img`).attr(`src`, identity.image);
 };
-        
-
-leafsApp.mustAnswer = `What are you a Sens fan? You must answer before moving on`;
-
-leafsApp.rejectClickCounter = 0;
-
-leafsApp.beginQuizAction = () => {
-    $(`button.begin`).on(`click`, function (event) {
-        event.preventDefault();
-        // console.log(`working`);
-        $(`div.welcome.show`).removeClass(`show`);
-        $(`.question1`).addClass(`show`);
-    })
-};
 
 leafsApp.buttonBegin = $(`button.begin`);
 leafsApp.buttonQuestion1 = $(`button.question1`);
@@ -70,6 +48,19 @@ leafsApp.thirdCardInput = $(`input[name=question3]`);
 leafsApp.firstCardParagraph = $(`.question1 p.warning`);
 leafsApp.secondCardParagraph = $(`.question2 p.warning`);
 leafsApp.thirdCardParagraph = $(`.question3 p.warning`);
+        
+leafsApp.mustAnswer = `What are you a Sens fan? You must answer before moving on`;
+
+leafsApp.rejectClickCounter = 0;
+
+leafsApp.beginQuizAction = (button, currentCard, nextCard) => {
+    $(button).on(`click`, function (event) {
+        event.preventDefault();
+        // console.log(`working`);
+        $(currentCard).removeClass(`show`);
+        $(nextCard).addClass(`show`);
+    })
+};
 
 leafsApp.clickActions = function (button, currentInput, currentQuestionCard, nextQuestionCard, currentQuestionParagraph) {
     $(button).on(`click`, function (event) {
@@ -98,14 +89,12 @@ leafsApp.submitButtonAction = function() {
             $(`input[name=question4]:checked`).val()
         ];
 
-        console.log(userSelections);
-
-        // need to convert string values in array into number values, could use a forEach() to change each string value into a number
+        // this converts the string values from userSelections array into number values so that they can be connected to given a ranking score
         const userSelectionNumbers = userSelections.map(function(value) {
             return parseInt(value, 10);
         })
 
-        // need to sum the value of the sampleArray
+        // need to sum the value of the sampleArray and then rank their score accordingly
         const userScore = function(selectionArray){
             const sumTool = (total, currentValue) => total + currentValue;
             const score = selectionArray.reduce(sumTool);
@@ -122,18 +111,17 @@ leafsApp.submitButtonAction = function() {
                 return `fanatic`;
             }
         }
-
-        console.log(userScore(userSelectionNumbers));
         
-        // need this variable to pull object properties dedicated to user category information properly. It allows me to pass in a string that will match up with the object's property key and access appropriate content
+        // need this variable to pull object properties dedicated to user category information properly. 
+        // I'm able to pass in a string that will match up with the object's property key and access appropriate content
         const userIdentityProperty = leafsApp.categoryDetails[userScore(userSelectionNumbers)];
         
         // // This returns the results page to the DOM
         leafsApp.userCategoryDetail(userIdentityProperty);
-        // console.log(userIdentityDetail(userIdentityProperty));
 
         const shareTwitterURL = `https://twitter.com/intent/tweet?url=https:%2f%2fpaul93andrews.github.io%2f&text=I%27m%20the%20${userIdentityProperty.twitter}%20Toronto%20Maple%20Leafs%20fan%20-%20Who%20are%20you?%20via%20@paulandrewsdev&related=paulandrewsdev`;
 
+        // final click actions that will dynamically change the DOM to display results page and twitter link
         if ($(`input[name=question4]`).is(`:checked`)) {
             $(`.question4`).removeClass(`show`);
             $(`.results`).addClass(`show`);
@@ -152,10 +140,11 @@ leafsApp.submitButtonAction = function() {
 leafsApp.resultsReloadAction = function () {
     $(`.results`).on(`click`, `.reset`, function () {
         location.reload();
-    })};
+    })
+};
 
 leafsApp.init = () => {
-    leafsApp.beginQuizAction();
+    leafsApp.beginQuizAction(leafsApp.buttonBegin, leafsApp.welcomeCard, leafsApp.firstQuestionCard);
     leafsApp.submitButtonAction();
     leafsApp.clickActions(leafsApp.buttonQuestion1, leafsApp.firstCardInput, leafsApp.firstQuestionCard, leafsApp.secondQuestionCard, leafsApp.firstCardParagraph);
     leafsApp.clickActions(leafsApp.buttonQuestion2, leafsApp.secondCardInput, leafsApp.secondQuestionCard, leafsApp.thirdQuestionCard, leafsApp.secondCardParagraph);
@@ -163,10 +152,6 @@ leafsApp.init = () => {
     leafsApp.resultsReloadAction();
 }
 
-
 $(document).ready(function () {
     leafsApp.init();
 });
-
-// stretch goals:
-// see if the dynamic appearance of divs can be transitioned

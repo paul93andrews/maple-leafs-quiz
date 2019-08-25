@@ -204,6 +204,16 @@ main {
   margin: 0 auto;
 }
 
+fieldset {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
 img {
   width: 100%;
   display: block;
@@ -336,16 +346,6 @@ div.welcome svg {
   div.welcome p {
     font-size: 1.25rem;
   }
-}
-
-fieldset {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
 }
 
 .question {

@@ -12,14 +12,17 @@ body {
     // whole webpage background styles
     background: linear-gradient(to top right, $primaryLight 50%, $primaryDark 50%);
     ;
-    // background-image: url(/styles/imagesAndIcons/mapleLeafsLogo.png) 10% bottom left;
-    // can try coding this as a stretch goal later
 }
 
 main {
     width: 85%;
     margin: 0 auto;
     
+}
+
+fieldset {
+    display: flex;
+    flex-direction: column;
 }
 
 img {
