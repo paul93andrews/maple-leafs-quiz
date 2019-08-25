@@ -351,7 +351,6 @@ div.welcome svg {
 .question {
   padding: 1rem;
   position: relative;
-  text-align: left;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -362,7 +361,7 @@ div.welcome svg {
   font-size: 1rem;
   font-style: italic;
   font-family: 'Maven Pro', sans-serif;
-  text-align: center;
+  text-align: left;
 }
 
 .question p.warning {
