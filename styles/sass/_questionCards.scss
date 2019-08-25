@@ -1,14 +1,13 @@
 .question {
     padding: 1rem;
     position: relative;
-    // text-align: left;
-    justify-content: center;
+    text-align: left;
     p {
         margin-bottom: 1rem;
         font-size: 1rem;
         font-style: italic;
         font-family: 'Maven Pro', sans-serif;
-        text-align: left;
+        text-align: center;
     }
     p.warning {
         display: none;

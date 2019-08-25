@@ -293,9 +293,7 @@ form button,
 form input[type=submit],
 .results button {
   width: 11rem;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
+  margin: 0 auto;
 }
 
 input.submitButton:hover,
@@ -351,9 +349,7 @@ div.welcome svg {
 .question {
   padding: 1rem;
   position: relative;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  text-align: left;
 }
 
 .question p {
@@ -361,7 +357,7 @@ div.welcome svg {
   font-size: 1rem;
   font-style: italic;
   font-family: 'Maven Pro', sans-serif;
-  text-align: left;
+  text-align: center;
 }
 
 .question p.warning {
