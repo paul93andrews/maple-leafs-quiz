@@ -7,11 +7,12 @@ html {
 body {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     // whole webpage background styles
     background: linear-gradient(to top right, $primaryLight 50%, $primaryDark 50%);
-    ;
+    
 }
 
 main {
@@ -112,6 +113,13 @@ button:active {
     h1 {
         font-size: 2rem;
     }
+}
+
+// footer copyright styling
+footer p {
+    margin-top: 1.2rem;
+    width: 100%;
+    display: inline-block;
 }
 
 

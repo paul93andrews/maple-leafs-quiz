@@ -189,6 +189,10 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -300,8 +304,8 @@ input.submitButton:hover,
 input.submitButton:focus,
 button:hover,
 button:focus {
-  -webkit-box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
 }
 
 input.submitButton:active,
@@ -314,6 +318,12 @@ button:active {
   h1 {
     font-size: 2rem;
   }
+}
+
+footer p {
+  margin-top: 1.2rem;
+  width: 100%;
+  display: inline-block;
 }
 
 div.welcome {
@@ -407,8 +417,8 @@ div.customCheckContainer .properCenter label::after {
 
 div.customCheckContainer input[type=radio]:hover + label::after,
 div.customCheckContainer input[type=radio]:focus + label::after {
-  -webkit-box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
 }
 
 div.customCheckContainer input[type=radio]:checked + label::after {
@@ -473,8 +483,8 @@ section.results a:hover,
 section.results a:focus {
   background: mintcream;
   border: 0.25rem solid #022787;
-  -webkit-box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.75);
-          box-shadow: 0px 0px 20px 8px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
+          box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.75);
 }
 
 section.results a:hover i,
