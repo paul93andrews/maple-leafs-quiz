@@ -3,25 +3,25 @@ leafsApp.categoryDetails = {
     clueless: {
         heading: `You're <span class="category">Clueless</span>`,
         detail: `You did realize this was a quiz about what kind of Leafs fan you are, right? Not what kind of fan you own and use on a humid evening when your A/C is down. My advice to you is simple. Get out once in a while and watch a Leafs game. It will surely disappoint you.`,
-        image: `styles/imagesAndIcons/cluelessImage.jpg`,
+        image: `imagesAndIcons/cluelessImage.jpg`,
         twitter: `Clueless`
     },
     hater: {
         heading: `You're <span class="category">A Hater</span>`,
         detail: `Someone pass this person a "Hater"ade with a side of salt. I bet you love watching the Leafs golf in May as you hit 30 over par. Also, you're probably a Canadiens fan. Well, remember that Montreal is better than Toronto in one respect: shawarma, not hockey.`,
-        image: `styles/imagesAndIcons/leafsHater.jpg`,
+        image: `imagesAndIcons/leafsHater.jpg`,
         twitter: `Hater`
     },
     realist: {
         heading: `You're <span class="category">A Realist</span>`,
         detail: `You've seen it all: the ups, the downs, the comebacks, and the colossal chokes. And you've learned. You know better than to take a 4-1 lead in the third period for granted. At least you can still enjoy a playoff run despite the very real certainty of it crashing and burning.`,
-        image: `styles/imagesAndIcons/leafsRealist.jpg`,
+        image: `imagesAndIcons/leafsRealist.jpg`,
         twitter: `Realist`
     },
     fanatic: {
         heading: `You're <span class="category">A Fanatic</span>`,
         detail: `Woah you really like to scream! And paint your face. And initiate violent conflict with fans of opposing teams. But you're passionate. And if passion means a one night stay at the drunk tank, then let's appoint you the Parade's grand marshal now.`,
-        image: `styles/imagesAndIcons/leafsFanatic.jpg`,
+        image: `imagesAndIcons/cluelessImage.jpg`,
         twitter: `Fanatic`
     }
 }
