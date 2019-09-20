@@ -30,7 +30,10 @@ leafsApp.userCategoryDetail = function(identity){
     $(`h2`).html(identity.heading);
     $(`span.category`).text(identity.span);
     $(`.outcomeDetail p`).text(identity.detail);
-    $(`.outcomeDetail img`).attr(`src`, identity.image);
+    $(`.outcomeDetail img`).attr({
+        src: identity.image,
+        alt: `Image of ${identity.twitter} fans`
+    });
 };
 
 leafsApp.buttonBegin = $(`button.begin`);
@@ -56,7 +59,6 @@ leafsApp.rejectClickCounter = 0;
 leafsApp.beginQuizAction = (button, currentCard, nextCard) => {
     $(button).on(`click`, function (event) {
         event.preventDefault();
-        // console.log(`working`);
         $(currentCard).removeClass(`show`);
         $(nextCard).addClass(`show`);
     })
@@ -65,7 +67,6 @@ leafsApp.beginQuizAction = (button, currentCard, nextCard) => {
 leafsApp.clickActions = function (button, currentInput, currentQuestionCard, nextQuestionCard, currentQuestionParagraph) {
     $(button).on(`click`, function (event) {
         event.preventDefault();
-        console.log(`works`);
         if ($(currentInput).is(`:checked`)) {
             $(currentQuestionCard).removeClass(`show`);
             $(nextQuestionCard).addClass(`show`);
@@ -125,8 +126,9 @@ leafsApp.submitButtonAction = function() {
         if ($(`input[name=question4]`).is(`:checked`)) {
             $(`.question4`).removeClass(`show`);
             $(`.results`).addClass(`show`);
-            const button = $(`<button>`).text(`Reset`).addClass(`reset`);
-            $(`.results`).append(button);
+            const button = $(`<button>`).text(`Reset`).addClass(`reset`).attr('id', 'resetButton');
+            const label = $(`<label class="visuallyHidden" for="resetButton">`).addClass(`visuallyHidden`).attr('for', 'resetButton');
+            $(`.results`).append(label, button);
             $(`a`).attr(`href`, shareTwitterURL);
             leafsApp.rejectClickCounter = 0;
         }
