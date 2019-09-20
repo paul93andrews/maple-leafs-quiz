@@ -21,7 +21,7 @@ leafsApp.categoryDetails = {
     fanatic: {
         heading: `You're <span class="category">A Fanatic</span>`,
         detail: `Woah you really like to scream! And paint your face. And initiate violent conflict with fans of opposing teams. But you're passionate. And if passion means a one night stay at the drunk tank, then let's appoint you the Parade's grand marshal now.`,
-        image: `imagesAndIcons/cluelessImage.jpg`,
+        image: `imagesAndIcons/leafsFanatic.jpg`,
         twitter: `Fanatic`
     }
 }
